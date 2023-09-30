@@ -1,0 +1,98 @@
+1.Write a query to display the first day of the month (in datetime format) three
+months before the current month.
+Sample current date : 2014-09-03
+Expected result : 2014-06-01
+
+
+SQL> select add_months(trunc(to_date('2014-09-03','yyyy-mm-dd'),'mm'),-3) from dual;
+
+ADD_MONTH
+---------
+01-JUN-14
+
+2.Write a query to display the last day of the month (in datetime format) three
+months before the current month.
+
+SQL> select (add_months(to_date('2014-09-03','yyyy-mm-dd'),-3))
+  2  from dual;
+
+(ADD_MONT
+---------
+03-JUN-14
+
+3. Write a query to get the distinct Mondays from hiredate in emp tables.
+
+
+SQL> select ename, next_day(hiredate,'monday') Monday
+  2  from emp;
+
+ENAME      MONDAY
+---------- ---------
+SMITH      22-DEC-80
+ALLEN      23-FEB-81
+WARD       23-FEB-81
+JONES      06-APR-81
+MARTIN     05-OCT-81
+BLAKE      04-MAY-81
+CLARK      15-JUN-81
+SCOTT      13-DEC-82
+KING       23-NOV-81
+TURNER     14-SEP-81
+ADAMS      17-JAN-83
+JAMES      07-DEC-81
+FORD       07-DEC-81
+MILLER     25-JAN-82
+
+14 rows selected.
+
+4.Write a query to get the first day of the current year.
+
+
+SQL> select trunc(sysdate,'mm')
+  2  from dual;
+
+TRUNC(SYS
+---------
+01-SEP-23
+
+5.Write a query to get the last day of the current year.
+
+
+SQL> select last_day(sysdate)
+  2  from dual;
+
+LAST_DAY(
+---------
+30-SEP-23
+
+6.Write a query to calculate your age in year.
+
+SQL> select floor(months_between(sysdate,to_date('2001-05-10','yyyy-mm-dd'))/12)
+  2  from dual;
+
+FLOOR(MONTHS_BETWEEN(SYSDATE,TO_DATE('2001-05-10','YYYY-MM-DD'))/12)
+--------------------------------------------------------------------
+                                                                  22
+
+7. Write a query to get the current date in the following format.
+Sample date : 04-sep-2014
+Output : September 4, 2014
+
+
+SQL> select to_date('09-30-2023','mm-dd-yyyy') from dual;
+
+TO_DATE('
+---------
+30-SEP-23
+
+8.Write a query to get the current date in Thursday September 2014 format.
+Thursday September 2014
+
+
+
+
+
+
+
+
+

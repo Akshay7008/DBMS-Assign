@@ -15,7 +15,7 @@ PRESIDENT       5000       5000
 MANAGER         2975       2450
 ANALYST         3000       3000
 
-
+...........................................................................................
 13.
 
 
@@ -28,18 +28,18 @@ SQL> select ename, count(*)
 ENAME        COUNT(*)
 ---------- ----------
 JONES               1
-FORD                 1
+FORD                1
 CLARK               1
 MILLER              1
-SMITH                 1
-SCOTT                1
+SMITH               1
+SCOTT               1
 ADAMS               1
 BLAKE               1
-KING                  1
-JAMES                1
+KING                1
+JAMES               1
 
 10 rows selected.
-
+...........................................................................................
 
 14.
 
@@ -53,8 +53,9 @@ ENAME        SUM(SAL)
 ---------- ----------
 CLARK            2450
 MILLER           1300
-KING                5000
+KING             5000
 
+...........................................................................................
 15.
 
 
@@ -76,7 +77,7 @@ SQL> select deptno,job,max(sal),avg(sal)
         30 SALESMAN        1600       1400
 
 9 rows selected.
-
+..........................................................................................
 16.
 
 
@@ -90,7 +91,7 @@ SQL> select deptno,max(sal)
 ---------- ----------
         20       3000
         30       2850
-
+...........................................................................................
 17.
 
 
@@ -104,6 +105,7 @@ SQL> select deptno, sum(sal)
         30       9400
         20      10875
         10       8750
+...........................................................................................
 
 18.
 
@@ -118,6 +120,7 @@ SQL> select deptno,count(*)
         30          6
         20          5
 
+...........................................................................................
 
 19.
 
@@ -134,6 +137,8 @@ SALESMAN        5600          4
 PRESIDENT       5000          1
 MANAGER         8275          3
 ANALYST         6000          2
+
+..........................................................................................
 
 20.
 
@@ -160,6 +165,7 @@ miller     clerk
 
 14 rows selected.
 
+..........................................................................................
 
 21.
 
@@ -172,18 +178,20 @@ SQL> select lpad(ename,15,' '), job, length(ename)
 LPAD(ENAME,15,' JOB       LENGTH(ENAME)
 --------------- --------- -------------
            WARD SALESMAN              4
-          SMITH CLERK                       5
+          SMITH CLERK                 5
           CLARK MANAGER               5
-         TURNER SALESMAN             6
-          JAMES CLERK                       5
-          JONES MANAGER                 5
+         TURNER SALESMAN              6
+          JAMES CLERK                 5
+          JONES MANAGER               5
          MARTIN SALESMAN              6
-          ADAMS CLERK                      5
-          SCOTT ANALYST                   5
-           KING PRESIDENT                 4
-           FORD ANALYST                    4
-          ALLEN SALESMAN                5
-          BLAKE MANAGER                 5
+          ADAMS CLERK                 5
+          SCOTT ANALYST               5
+           KING PRESIDENT             4
+           FORD ANALYST               4
+          ALLEN SALESMAN              5
+          BLAKE MANAGER               5
+
+...........................................................................................
 
 22.
 
@@ -203,6 +211,8 @@ QL> select mgr ,max(sal),round(avg(sal),2),min(sal)
 
 7 rows selected.
 
+...........................................................................................
+
 23.
 
 
@@ -216,4 +226,153 @@ SQL> select deptno, sum(sal+nvl(comm,0)) sum,avg(sal+nvl(comm,0)) avg
         20       8975          2991.66667
         10       7450           3725
 
+...........................................................................................
+
+24.
+
+
+SQL> select *from emp
+  2  where extract(month from hiredate)=8 and extract(year from hiredate)=1980 and  sal between 1500 and 2500;
+
+no rows selected
+
+.........................................................................................
+
+25.
+
+
+SQL> select *from emp
+  2  where extract(month from hiredate) in (8,5,12);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+.........................................................................................
+
+26.
+
+
+SQL> select ename,job,hiredate,to_char(hiredate,'dd/mm/yyyy')
+  2  from emp
+  3  where job='CLERK';
+
+ENAME      JOB       HIREDATE  TO_CHAR(HI
+---------- --------- --------- ----------
+SMITH      CLERK     17-DEC-80 17/12/1980
+ADAMS      CLERK     12-JAN-83 12/01/1983
+JAMES      CLERK     03-DEC-81 03/12/1981
+MILLER     CLERK     23-JAN-82 23/01/1982
+
+...........................................................................................
+
+27.
+
+
+
+.........................................................................................
+
+28.
+
+
+SQL> select empno,ename,to_char(nvl(comm,0),'$99,999.99')
+  2  from emp
+  3  where ename like 'A%N';
+
+          EMPNO ENAME      TO_CHAR(NVL
+--------------- ---------- -----------
+           7499 ALLEN          $300.00
+
+
+
+..........................................................................................
+
+Topic ----------------- create Table, DML , subquery and joins
+...........................................................................................
+31.
+
+SQL> select *from mydept_DBDA
+  2  /
+
+         DEPTID DNAME                DLOC
+--------------- -------------------- --------------------
+             30 Purchase             Mumbai
+
+...........................................................................................
+
+32.
+
+
+
+SQL> create table student(
+  2  sid int primary key , sname varchar2(20) not null );
+
+Table created.
+
+> create table course(
+  2  cid int primary key ,cname varchar2(20) not null);
+
+Table created.
+
+
+SQL> create table marks(
+  2  sid number ,cid number ,marks number check (marks>0),constraint pk_num primary key (cid,sid));
+
+Table created.
+
+SQL> insert into marks
+  2  values(2,4,50);
+
+1 row created.
+
+SQL> select *from marks
+  2  /
+
+            SID             CID           MARKS
+--------------- --------------- ---------------
+              2               4              50
+
+SQL> delete from marks;
+
+1 row deleted.
+
+SQL> insert into marks
+  2  values(1,1,99)
+  3  /
+
+1 row created.
+
+SQL> insert into marks
+  2  values(1,3,98);
+
+1 row created.
+
+SQL> insert into marks
+  2  values(2,1,95);
+
+1 row created.
+
+SQL> insert into marks
+  2  values(2,2,97);
+
+1 row created.
+
+SQL> select
+  2
+SQL>
+SQL> select
+  2  *from marks
+  3  /
+
+            SID             CID           MARKS
+--------------- --------------- ---------------
+              1               1              99
+              1               3              98
+              2               1              95
+              2               2              97
+
+SQL>
 

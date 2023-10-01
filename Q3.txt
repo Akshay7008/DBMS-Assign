@@ -1,3 +1,63 @@
+29.
+
+SQL> select empno,ename,sal,comm,case when comm is null or comm=0 then'need improvement'
+  2  when comm<=300 then 'ok'
+  3  when comm between 301 and 500 then 'good'
+  4  else 'excellent' end mark
+  5  from emp
+  6  /
+
+     EMPNO ENAME             SAL       COMM MARK
+---------- ---------- ---------- ---------- ----------------
+      7369 SMITH             800            need improvement
+      7499 ALLEN            1600        300 ok
+      7521 WARD             1250        500 good
+      7566 JONES            2975            need improvement
+      7654 MARTIN           1250       1400 excellent
+      7698 BLAKE            2850            need improvement
+      7782 CLARK            2450            need improvement
+      7788 SCOTT            3000            need improvement
+      7839 KING             5000            need improvement
+      7844 TURNER           1500          0 need improvement
+      7876 ADAMS            1100            need improvement
+      7900 JAMES             950            need improvement
+      7902 FORD             3000            need improvement
+      7934 MILLER           1300            need improvement
+
+14 rows selected.
+------------------------------------------------------------------------------
+
+30.
+
+select empno,ename,sal,comm,case deptno when 10 the 'HR'
+when 20 then 'ADMIN'
+when 30 then 'ACCOUNTS'
+else 'PURCHASE' end DNAME
+from emp;
+
+
+     EMPNO ENAME             SAL       COMM DNAME
+---------- ---------- ---------- ---------- --------
+      7369 SMITH             800            ADMIN
+      7499 ALLEN            1600        300 ACCOUNTS
+      7521 WARD             1250        500 ACCOUNTS
+      7566 JONES            2975            ADMIN
+      7654 MARTIN           1250       1400 ACCOUNTS
+      7698 BLAKE            2850            ACCOUNTS
+      7782 CLARK            2450            HR
+      7788 SCOTT            3000            ADMIN
+      7839 KING             5000            HR
+      7844 TURNER           1500          0 ACCOUNTS
+      7876 ADAMS            1100            ADMIN
+      7900 JAMES             950            ACCOUNTS
+      7902 FORD             3000            ADMIN
+      7934 MILLER           1300            HR
+
+14 rows selected.
+
+
+
+-------------------------------------------------------------------------------
 31.
 
 
@@ -355,6 +415,67 @@ ALAN             1300
 
 ------------------------------------------------------------------------------------------------------------------------
 
+43.
+
+
+SQL> insert into emp
+  2  values(7903,'WALL','aaa',7566,'15-JAN-85',1000,null,20);
+
+1 row created.
+
+SQL> select *from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7903 WALL       aaa             7566 15-JAN-85       1000                    20
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+15 rows selected.
+
+
+SQL> update emp
+  2  set sal =(select sal from emp where ename='MILLER')
+  3  where deptno=(select deptno from emp where ename ='WALL');
+
+6 rows updated.
+
+SQL> select *from emp
+  2  /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7903 WALL       aaa             7566 15-JAN-85       1300                    20
+      7369 SMITH      CLERK           7902 17-DEC-80       1300                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       1300                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       1300                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1300                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       1300                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+15 rows selected.
+
+--------------------------------------------------------------------------------
 44.
 
 SQL> select *from emp
@@ -419,7 +540,58 @@ SQL> select *from emp
       7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
       7901 alan       aaa             7782 18-JAN-87       4000                    20
 ----------------------------------------------------------------------------------------------------------------------------
+46.
 
+SQL> select *from emp
+  2  where sal >(select avg(sal) from emp where deptno=(select deptno from emp where ename='ALLEN'));
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+
+
+
+SQL> select avg(sal)
+  2  from emp
+  3  where deptno=30;
+
+  AVG(SAL)
+----------
+1566.66667
+----------------------------------------------------------------------------------------------------------------------------------
+48.
+
+
+SQL>
+SQL> select *from emp e
+  2  where sal>(select avg(sal) from emp d where d.deptno=e.deptno);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+6 rows selected.
+
+
+SQL> select deptno ,avg(sal)
+  2  from emp
+  3  group by deptno;
+
+    DEPTNO   AVG(SAL)
+---------- ----------
+        30 1566.66667
+        20       2175
+        10 2916.66667
+
+-----------------------------------------------------------------------------------------
 49.
 
 SQL> select *from emp
@@ -447,6 +619,117 @@ SQL> select *from emp
 
 -----------------------------------------------------------------------------------------------------------------------
 
+50.
 
 
+SQL> select *from emp e
+  2  where sal >(select avg(sal) from emp j where j.job=e.job);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+6 rows selected.
+
+
+SQL> select job ,avg(sal)
+  2  from emp
+  3  group by job;
+
+JOB         AVG(SAL)
+--------- ----------
+CLERK         1037.5
+SALESMAN        1400
+PRESIDENT       5000
+MANAGER   2758.33333
+ANALYST         3000
+
+---------------------------------------------------------------------------------------
+
+51.
+
+
+
+SQL> select empno,ename,e.deptno,d.deptno,dname
+  2  from emp e , dept d
+  3  where e.deptno =d.deptno;
+
+     EMPNO ENAME          DEPTNO     DEPTNO DNAME
+---------- ---------- ---------- ---------- --------------
+      7369 SMITH              20         20 RESEARCH
+      7499 ALLEN              30         30 SALES
+      7521 WARD               30         30 SALES
+      7566 JONES              20         20 RESEARCH
+      7654 MARTIN             30         30 SALES
+      7698 BLAKE              30         30 SALES
+      7782 CLARK              10         10 ACCOUNTING
+      7788 SCOTT              20         20 RESEARCH
+      7839 KING               10         10 ACCOUNTING
+      7844 TURNER             30         30 SALES
+      7876 ADAMS              20         20 RESEARCH
+      7900 JAMES              30         30 SALES
+      7902 FORD               20         20 RESEARCH
+      7934 MILLER             10         10 ACCOUNTING
+
+14 rows selected.
+
+
+------------------------------------------------------------------------------------------
+
+52.
+
+SQL> select empno,ename,dname,grade,sal
+  2  from emp e inner join salgrade s
+  3  on e.sal between s.losal and s.hisal
+  4  inner join dept d on e.deptno=d.deptno;
+
+     EMPNO ENAME      DNAME               GRADE        SAL
+---------- ---------- -------------- ---------- ----------
+      7839 KING       ACCOUNTING              5       5000
+      7782 CLARK      ACCOUNTING              4       2450
+      7934 MILLER     ACCOUNTING              2       1300
+      7902 FORD       RESEARCH                4       3000
+      7788 SCOTT      RESEARCH                4       3000
+      7566 JONES      RESEARCH                4       2975
+      7876 ADAMS      RESEARCH                1       1100
+      7369 SMITH      RESEARCH                1        800
+      7698 BLAKE      SALES                   4       2850
+      7499 ALLEN      SALES                   3       1600
+      7844 TURNER     SALES                   3       1500
+      7654 MARTIN     SALES                   2       1250
+      7521 WARD       SALES                   2       1250
+      7900 JAMES      SALES                   1        950
+
+14 rows selected.
+
+--------------------------------------------------------------------------------------
+
+53.
+
+SQL> select e.empno,e.ename,e.mgr,m.empno mgrno, m.ename mgrname
+  2  from emp e ,emp m
+  3  where e.mgr=m.empno;
+
+     EMPNO ENAME             MGR      MGRNO MGRNAME
+---------- ---------- ---------- ---------- ----------
+      7902 FORD             7566       7566 JONES
+      7788 SCOTT            7566       7566 JONES
+      7900 JAMES            7698       7698 BLAKE
+      7844 TURNER           7698       7698 BLAKE
+      7654 MARTIN           7698       7698 BLAKE
+      7521 WARD             7698       7698 BLAKE
+      7499 ALLEN            7698       7698 BLAKE
+      7934 MILLER           7782       7782 CLARK
+      7876 ADAMS            7788       7788 SCOTT
+      7782 CLARK            7839       7839 KING
+      7698 BLAKE            7839       7839 KING
+      7566 JONES            7839       7839 KING
+      7369 SMITH            7902       7902 FORD
+
+13 rows selected.
 

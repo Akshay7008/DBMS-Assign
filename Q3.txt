@@ -106,7 +106,7 @@ SQL> desc myemployee
  PASSPORTNUM                                                                VARCHAR2(15)
  DEPTNO                                                                     NUMBER
 
-
+---------------------------------------------------------------------------------------
 32.
 
  create table Student_1
@@ -201,7 +201,7 @@ SQL> select *from Marks
        200          2         78
        300          3         69
 
-
+----------------------------------------------------------------------------------------
 Que 3.
 
 
@@ -561,6 +561,35 @@ SQL> select avg(sal)
   AVG(SAL)
 ----------
 1566.66667
+------------------------------------------------------------------------------------------
+47.
+
+
+SQL> select e.ename,e.deptno,d.deptno,d.dname
+  2  from emp e, dept d
+  3  where d.deptno=(select deptno from dept where dname='PURCHASE');
+
+ENAME          DEPTNO     DEPTNO DNAME
+---------- ---------- ---------- --------------
+SMITH              20         50 PURCHASE
+ALLEN              30         50 PURCHASE
+WARD               30         50 PURCHASE
+JONES              20         50 PURCHASE
+MARTIN             30         50 PURCHASE
+BLAKE              30         50 PURCHASE
+CLARK              10         50 PURCHASE
+SCOTT              20         50 PURCHASE
+KING               10         50 PURCHASE
+TURNER             30         50 PURCHASE
+ADAMS              20         50 PURCHASE
+JAMES              30         50 PURCHASE
+FORD               20         50 PURCHASE
+MILLER             10         50 PURCHASE
+JON                50         50 PURCHASE
+ADITYA             50         50 PURCHASE
+SUNNY              50         50 PURCHASE
+
+17 rows selected.
 ----------------------------------------------------------------------------------------------------------------------------------
 48.
 
@@ -733,3 +762,470 @@ SQL> select e.empno,e.ename,e.mgr,m.empno mgrno, m.ename mgrname
 
 13 rows selected.
 
+------------------------------------------------------------------------------------------
+54.
+
+SQL> create table salesman
+  2  (sid number primary key,
+  3  sname varchar2(20) unique,
+  4  address varchar2(20));
+
+Table created.
+
+SQL> desc salesman
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ SID                                                               NOT NULL NUMBER
+ SNAME                                                                      VARCHAR2(20)
+ ADDRESS                                                                    VARCHAR2(20)
+
+insert into salesman
+values(101,'AS','PUNE');
+
+insert into salesman
+values(102,'PS','MUMBAI');
+
+insert into salesman
+values(103,'KS','NAGPUR');
+
+SQL> select *from salesman
+  2  /
+
+       SID SNAME                ADDRESS
+---------- -------------------- --------------------
+       101 AS                   PUNE
+       102 PS                   MUMBAI
+       103 KS                   NAGPUR
+
+
+
+SQL> desc category
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ CID                                                               NOT NULL NUMBER
+ CNAME                                                                      VARCHAR2(20)
+ DISCRIPTION                                                                VARCHAR2(20)
+
+insert into category
+values(1,'AAA','QW');
+
+insert into category
+values(2,'BBB','RW');
+
+insert into category
+values(3,'CCC','EW');
+
+
+
+SQL> select *from category;
+
+       CID CNAME                DISCRIPTION
+---------- -------------------- --------------------
+         1 AAA                  QW
+         2 BBB                  RW
+         3 CCC                  EW
+
+SQL> create table product
+  2  (pid number primary key,
+  3  pname varchar2(20),
+  4  price number(9,2),
+  5  qty number,
+  6  ccid number,
+  7  ssid number,
+  8  constraint fk1 foreign key (ccid) references category (cid),
+  9  constraint fk2 foreign key (ssid) references salesman (sid));
+
+Table created.
+
+QL> insert into product
+  2  values(10,'tap',820,5,2,101);
+
+1 row created.
+
+SQL> insert into product
+  2  values(20,'yum',1000,10,1,102);
+
+1 row created.
+
+SQL> insert into product
+  2  values(30,'urqt',900,15,3,103);
+
+1 row created.
+
+SQL> select *from product;
+
+       PID PNAME                     PRICE        QTY       CCID       SSID
+---------- -------------------- ---------- ---------- ---------- ----------
+        10 tap                         820          5          2        101
+        20 yum                        1000         10          1        102
+        30 urqt                        900         15          3        103
+
+
+
+PART (1)
+SQL> select pid,pname,s.sid,s.sname
+  2  from product p inner join salesman s
+  3  on p.ssid=s.sid;
+
+       PID PNAME                       SID SNAME
+---------- -------------------- ---------- --------------------
+        10 tap                         101 AS
+        20 yum                         102 PS
+        30 urqt                        103 KS
+
+
+
+PART(2)
+
+SQL> select pid,pname,s.sid,s.sname
+  2  from product p inner join salesman s
+  3  on p.ssid=s.sid
+  4  where address='PUNE';
+
+       PID PNAME                       SID SNAME
+---------- -------------------- ---------- --------------------
+        10 tap                         101 AS
+
+
+PART(3)
+
+
+SQL> select pid,pname,c.cid,c.cname
+  2  from product p inner join category c
+  3  on p.ccid=c.cid;
+
+       PID PNAME                       CID CNAME
+---------- -------------------- ---------- --------------------
+        10 tap                           2 BBB
+        20 yum                           1 AAA
+        30 urqt                          3 CCC
+
+---------------------------------------------------------------------------------------
+
+55.
+
+SQL> create table faculty
+  2  (fid number primary key,
+  3  fname varchar2(20),
+  4  spskill1 varchar2(20),
+  5  spskill2 varchar2(20));
+
+Table created.
+
+SQL> insert into faculty
+  2  values(10,'kjzhchi','a','b');
+
+1 row created.
+
+SQL> insert into faculty
+  2  values(11,'sdd','x','z');
+
+1 row created.
+
+SQL> insert into faculty
+  2  values(12,'lksjk','a','x');
+
+1 row created.
+
+SQL> insert into faculty
+  2  values(13,'ksfdhw','a','b');
+
+1 row created.
+
+SQL> select *from faculty;
+
+       FID FNAME                SPSKILL1             SPSKILL2
+---------- -------------------- -------------------- --------------------
+        10 kjzhchi              a                    b
+        11 sdd                  x                    z
+        12 lksjk                a                    x
+        13 ksfdhw               a                    b
+
+
+create table room
+(rid number primary key,
+rname varchar2(20),
+rloc varchar2(20));
+
+SQl>insert into room
+  2values(100,'jasmin','1stfloor');
+
+SQL> insert into room
+  2  values(101,'rose','2stfloor');
+
+1 row created.
+
+SQL> insert into room
+  2  values(105,'lotus','1stfloor');
+
+1 row created.
+
+SQL> insert into room
+  2  values(103,'Morgra','1stfloor');
+
+
+
+SQL> select *from room
+  2  /
+
+       RID RNAME                RLOC
+---------- -------------------- --------------------
+       100 jasmin               1stfloor
+       101 rose                 2stfloor
+       105 lotus                1stfloor
+       103 Morgra               1stfloor
+
+SQL> create table course_1
+  2  (cid number primary key,
+  3  cname varchar2(20),
+  4  rrid number,
+  5  ffid number,
+  6  constraint fk11 foreign key (rrid) references room (rid),
+  7  constraint fk22 foreign key (ffid) references faculty (fid));
+
+Table created.
+
+
+SQL> insert into course_1
+  2  values(121,'DBDA',100,10);
+
+1 row created.
+
+
+SQL> insert into course_1
+  2  values(131,'DAC',100,null);
+
+1 row created.
+
+
+SQL> insert into course_1
+  2  values(141,'DITISS',null,null);
+
+1 row created.
+
+SQL> insert into course_1
+  2  values(151,'DIOT',105,12);
+
+
+SQL> select *from course_1;
+
+       CID CNAME                      RRID       FFID
+---------- -------------------- ---------- ----------
+       121 DBDA                        100         10
+       131 DAC                         100
+       141 DITISS
+       151 DIOT                        105         12
+
+
+PART(1)
+
+SQL> select cid,cname,r.rid,r.rname
+  2  from course_1 c left join room r
+  3  on c.rrid=r.rid;
+
+       CID CNAME                       RID RNAME
+---------- -------------------- ---------- --------------------
+       121 DBDA                        100 jasmin
+       131 DAC                         100 jasmin
+       141 DITISS
+       151 DIOT                        105 lotus
+
+PART(2)
+
+
+SQL> select cid,cname,f.fid,f.fname,r.rid,r.rname
+  2  from course_1 c right join faculty f on c.ffid=f.fid
+  3  full join room r on c.rrid=r.rid;
+
+       CID CNAME                       FID FNAME                       RID RNAME
+---------- -------------------- ---------- -------------------- ---------- --------------------
+       121 DBDA                         10 kjzhchi                     100 jasmin
+                                                                       101 rose
+       151 DIOT                         12 lksjk                       105 lotus
+                                                                       103 Morgra
+                                        11 sdd
+                                        13 ksfdhw
+
+6 rows selected.
+
+
+
+PART(3)
+SQL> select cid,cname,r.rid,r.rname
+  2  from course_1 c right join room r
+  3  on c.rrid=r.rid;
+
+       CID CNAME                       RID RNAME
+---------- -------------------- ---------- --------------------
+       121 DBDA                        100 jasmin
+       131 DAC                         100 jasmin
+       151 DIOT                        105 lotus
+                                       103 Morgra
+                                       101 rose
+
+
+
+PART(6)
+
+
+SQL> select cid,cname,r.rname,f.fname
+  2  from course_1 c full join room r
+  3  on c.rrid=r.rid full join faculty f
+  4  on c.ffid=f.fid;
+
+       CID CNAME                RNAME                FNAME
+---------- -------------------- -------------------- --------------------
+       131 DAC                  jasmin
+       121 DBDA                 jasmin               kjzhchi
+                                rose
+       151 DIOT                 lotus                lksjk
+                                Morgra
+       141 DITISS
+                                                     ksfdhw
+                                                     sdd
+
+8 rows selected.
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+56.
+
+SQL> create table saleman
+  2  (sid number primary key,
+  3  sname varchar2(20) not null,
+  4  city varchar2(20));
+
+Table created.
+
+
+
+SQL> create table category1
+  2  (cid number primary key,
+  3  cname varchar2(20) unique not null,
+  4  description varchar2(20));
+
+Table created.
+
+
+SQL> insert into saleman
+  2  values(12,'Kriti','Mumbai');
+
+1 row created.
+
+SQL> insert into saleman
+  2  values(13,'Prasad','Nashik');
+
+1 row created.
+
+SQL> insert into saleman
+  2  values(14,'Arnav','Amaravati');
+
+1 row created.
+
+
+SQL> insert into saleman
+  2  values(11,'Rahul','PUNE');
+
+1 row created.
+
+
+
+1 row created.
+
+SQL> select *from saleman
+  2  /
+
+       SID SNAME                CITY
+---------- -------------------- --------------------
+        11 Rahul                PUNE
+        12 Kriti                Mumbai
+        13 Prasad               Nashik
+        14 Arnav                Amaravati
+
+SQL> select *from category1;
+
+       CID CNAME                DESCRIPTION
+---------- -------------------- --------------------
+         1 chips                very crunchy
+         2 chocolate            very chocolately
+         3 snacks               yummy
+         4 cold drinks          thanda cool
+
+
+SQL> create table product1
+  2  (pno number primary key,
+  3  pname varchar2(20) unique not null,
+  4  qty number(9,2) check(qty>0),
+  5  price number(9,2),
+  6  cacid number,
+  7  sasid number,
+  8  constraint fk111 foreign key (cacid) references category1 (cid),
+  9  constraint fk222 foreign key (sasid) references saleman (sid));
+
+Table created.
+
+SQL> insert into product1
+  2  values(123,'lays',30,30.00,1,12);
+
+1 row created.
+
+SQL> insert into product1
+  2  values(111,'pepsi',40,50.00,4,11);
+
+1 row created.
+
+SQL> insert into product1
+  2  values(134,'nachos',50,50.00,1,12);
+
+1 row created.
+
+SQL> insert into product1
+  2  values(124,'dairy milk',40,60.00,2,14);
+
+1 row created.
+
+SQL> insert into product1
+  2  values(125,'pringle',40,60.00,1,14);
+
+1 row created.
+
+
+SQL> select *from product1
+  2  /
+
+       PNO PNAME                       QTY      PRICE      CACID      SASID
+---------- -------------------- ---------- ---------- ---------- ----------
+       123 lays                         30         30          1         12
+       111 pepsi                        40         50          4         11
+       134 nachos                       50         50          1         12
+       124 dairy milk                   40         60          2         14
+       125 pringle                      40         60          1         14
+
+
+part(1)
+SQL> select pno,pname,c.cid,c.cname
+  2  from product1 p inner join category1 c
+  3  on p.cacid=c.cid
+  4  where c.cname='chips';
+
+       PNO PNAME                       CID CNAME
+---------- -------------------- ---------- --------------------
+       123 lays                          1 chips
+       134 nachos                        1 chips
+       125 pringle                       1 chips
+
+part(2)
+
+
+SQL> select pno,pname,s.sname
+  2  from product1 p inner join saleman s
+  3  on p.sasid=s.sid
+  4  where s.sname='Kriti';
+
+       PNO PNAME                SNAME
+---------- -------------------- --------------------
+       123 lays                 Kriti
+       134 nachos               Kriti
+ part(3)

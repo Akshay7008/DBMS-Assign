@@ -1,4 +1,232 @@
+
+
+DQL Statements.............!!!!!
+
+1.
+
+
+SQL> select ename, sal
+  2  from emp where sal>1500;
+
+ENAME             SAL
+---------- ----------
+ALLEN            1600
+JONES            2975
+BLAKE            2850
+CLARK            2450
+SCOTT            3000
+KING             5000
+FORD             3000
+
+7 rows selected.
+
+2.
+
+
+SQL> select ename, sal
+  2  from emp
+  3  where sal between 1200 and 2000;
+
+ENAME             SAL
+---------- ----------
+ALLEN            1600
+WARD             1250
+MARTIN           1250
+TURNER           1500
+MILLER           1300
+
+3.
+
+
+SQL> select ename,sal
+  2  from emp
+  3  where sal in (1600,800,1900);
+
+ENAME             SAL
+---------- ----------
+SMITH             800
+ALLEN            1600
+
+
+4.
+
+SQL> select deptno,ename
+  2  from emp where REGEXP_LIKE (ename,'R..$');
+
+no rows selected
+
+
+5.
+
+
+SQL> select deptno,ename
+  2  from emp where REGEXP_LIKE (ename,'^A.*N$');
+
+    DEPTNO ENAME
+---------- ----------
+        30 ALLEN
+
+
+QUESTION 2:
+
+1.
+
+SQL> select ename,sal,deptno
+  2  from emp
+  3  where sal>1250 and deptno=30;
+
+ENAME             SAL     DEPTNO
+---------- ---------- ----------
+ALLEN            1600         30
+BLAKE            2850         30
+TURNER           1500         30
+
+2.
+
+SQL> select ename,sal
+  2  from emp
+  3  where sal >=1250 and sal <=3000;
+
+ENAME             SAL
+---------- ----------
+ALLEN            1600
+WARD             1250
+JONES            2975
+MARTIN           1250
+BLAKE            2850
+CLARK            2450
+SCOTT            3000
+TURNER           1500
+FORD             3000
+MILLER           1300
+
+10 rows selected.
+
+3.
+
+
+SQL> select ename,sal
+  2  from emp
+  3  where sal >1250 and sal <3000;
+
+ENAME             SAL
+---------- ----------
+ALLEN            1600
+JONES            2975
+BLAKE            2850
+CLARK            2450
+TURNER           1500
+MILLER           1300
+
+6 rows selected.
+
+4.
+
+
+SQL> select ename,sal
+  2  from emp
+  3  where sal in (3000,1250,2500);
+
+ENAME             SAL
+---------- ----------
+WARD             1250
+MARTIN           1250
+SCOTT            3000
+FORD             3000
+
+5.
+
+SQL> select ename, sal deptno
+  2  from emp
+  3  where ename like 'SMITH';
+
+ENAME          DEPTNO
+---------- ----------
+SMITH             800
+
+
+6.
+
+
+SQL> select empno,ename,sal
+  2  from emp
+  3  where REGEXP_LIKE (ename,'^S');
+
+     EMPNO ENAME             SAL
+---------- ---------- ----------
+      7369 SMITH             800
+      7788 SCOTT            3000
+
+
+7.
+
+SQL> select empno,ename,sal
+  2  from emp
+  3  where REGEXP_LIKE (ename,'S$');
+
+     EMPNO ENAME             SAL
+---------- ---------- ----------
+      7566 JONES            2975
+      7876 ADAMS            1100
+      7900 JAMES             950
+
+
+8.
+
+SQL> select empno,ename,sal
+  2  from emp
+  3  where REGEXP_LIKE (ename,'I.$');
+
+     EMPNO ENAME             SAL
+---------- ---------- ----------
+      7654 MARTIN           1250
+
+9.
+
+
+SQL> select empno,ename,sal
+  2  from emp
+  3  where REGEXP_LIKE (ename,'^A.*L.*N$');
+
+     EMPNO ENAME             SAL
+---------- ---------- ----------
+      7499 ALLEN            1600
+
+
+
+10.
+
+
+SQL> select empno,ename,sal
+  2  from emp
+  3  where REGEXP_LIKE (ename,'^A..B.*P.$');
+
+no rows selected
+
+
+11.
+
+
+SQL> select ename, sal
+  2  from emp
+  3  where REGEXP_LIKE (ename,'^A|^S|^W');
+
+ENAME             SAL
+---------- ----------
+SMITH             800
+ALLEN            1600
+WARD             1250
+SCOTT            3000
+ADAMS            1100
+AEBNSPK          1000
+
+6 rows selected.
+
+
+===========================================================================================================================================================================
+
 Aggregate Functions........!!!!!
+
 
 12.
 
@@ -270,6 +498,7 @@ MILLER     CLERK     23-JAN-82 23/01/1982
 ...........................................................................................
 
 27.
+
 
 
 

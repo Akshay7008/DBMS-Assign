@@ -1,0 +1,64 @@
+
+SQL> create procedure delete_emp1 (eno in number)
+  2  is
+  3  begin
+  4  delete from emp
+  5  where empno=eno;
+  6  end;
+  7  /
+
+Procedure created.
+
+SQL> execute delete_emp1(7934);
+
+PL/SQL procedure successfully completed.
+
+SQL> select *from emp
+  2  /
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+13 rows selected.
+
+
+
+SQL> create procedure insert_sal (g in number,lo in number,hi in number)
+  2  is
+  3  begin
+  4  insert into salgrade
+  5  values(g,lo,hi);
+  6  end;
+  7  /
+
+Procedure created.
+
+SQL> execute insert_sal(4,2000,4000);
+
+PL/SQL procedure successfully completed.
+
+SQL> select *from salgrade;
+
+     GRADE      LOSAL      HISAL
+---------- ---------- ----------
+         1        700       1200
+         2       1201       1400
+         3       1401       2000
+         4       2001       3000
+         5       3001       9999
+         4       2000       4000
+
+6 rows selected.

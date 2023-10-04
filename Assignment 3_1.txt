@@ -1023,10 +1023,11 @@ SQL> select cid,cname,r.rid,r.rname
   2  from course_1 c left join room r
   3  on c.rrid=r.rid;
 
+
        CID CNAME                       RID RNAME
 ---------- -------------------- ---------- --------------------
        121 DBDA                        100 jasmin
-       131 DAC                         100 jasmin
+       131 DAC                         101 rose
        141 DITISS
        151 DIOT                        105 lotus
 
@@ -1058,33 +1059,41 @@ SQL> select cid,cname,r.rid,r.rname
        CID CNAME                       RID RNAME
 ---------- -------------------- ---------- --------------------
        121 DBDA                        100 jasmin
-       131 DAC                         100 jasmin
-       151 DIOT                        105 lotus
+       131 DAC                         101 rose
                                        103 Morgra
-                                       101 rose
+       151 DIOT                        105 lotus
+
+PART(4)
 
 
+  1  select * from room r
+  2* where not exists (select * from course_1 c where r.rid= c.rrid)
+SQL> /
+
+       RID RNAME                RLOC
+---------- -------------------- --------------------
+       103 Morgra               1stfloor
 
 PART(6)
-
 
 SQL> select cid,cname,r.rname,f.fname
   2  from course_1 c full join room r
   3  on c.rrid=r.rid full join faculty f
   4  on c.ffid=f.fid;
 
+
        CID CNAME                RNAME                FNAME
 ---------- -------------------- -------------------- --------------------
-       131 DAC                  jasmin
        121 DBDA                 jasmin               kjzhchi
-                                rose
+       131 DAC                  rose
        151 DIOT                 lotus                lksjk
                                 Morgra
        141 DITISS
                                                      ksfdhw
                                                      sdd
 
-8 rows selected.
+7 rows selected.
+
 
 
 
@@ -1228,4 +1237,71 @@ SQL> select pno,pname,s.sname
 ---------- -------------------- --------------------
        123 lays                 Kriti
        134 nachos               Kriti
- part(3)
+ 
+
+part(3)
+
+
+  1  select *from saleman s
+  2* where not exists (select * from product1 p where s.sid=p.sasid)
+SQL> /
+
+       SID SNAME                CITY
+---------- -------------------- --------------------
+        13 Prasad               Nashik
+
+
+part(4)
+
+
+  1  select *from category1 c
+  2* where not exists (select * from product1 p where c.cid=p.cacid)
+SQL> /
+
+       CID CNAME                DESCRIPTION
+---------- -------------------- --------------------
+         3 snacks               yummy
+
+part(5)
+
+ 1  select *from product1 p
+  2* where not exists (select * from category c where p.cacid=c.cid)
+SQL> /
+
+       PNO PNAME                       QTY      PRICE      CACID      SASID
+---------- -------------------- ---------- ---------- ---------- ----------
+       111 pepsi                        40         50          4         11
+
+
+part(6)
+
+
+SQL> select *from saleman
+  2  where REGEXP_LIKE (sname,'^P|^N');
+
+       SID SNAME                CITY
+---------- -------------------- --------------------
+        13 Prasad               Nashik
+
+part(7)
+
+
+rote file afiedt.buf
+
+  1  alter table saleman
+  2* add (credit_limit number)
+SQL> /
+
+Table altered.
+
+SQL> select*from saleman
+  2  /
+
+       SID SNAME                CITY                 CREDIT_LIMIT
+---------- -------------------- -------------------- ------------
+        11 Rahul                PUNE
+        12 Kriti                Mumbai
+        13 Prasad               Nashik
+        14 Arnav                Amaravati
+
+

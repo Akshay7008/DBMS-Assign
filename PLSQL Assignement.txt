@@ -1,0 +1,57 @@
+1.
+
+  1  create procedure ap(l number,w number)
+  2  as
+  3  peri number;
+  4  area number;
+  5  begin
+  6  peri:=2*(l*w);
+  7  area:=l*w;
+  8  DBMS_OUTPUT.PUT_LINE('perimeter: '||peri ||'Area: '||area);
+  9* end;
+SQL> /
+
+Procedure created.
+
+SQL> execute ap(10,2);
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL> execute ap(10,2);
+perimeter: 40Area: 20
+
+PL/SQL procedure successfully completed.
+
+
+==========================================================================================================================
+
+2.
+
+
+  1  create or replace procedure cubesq
+  2  as
+  3  num number:=&n;
+  4  cube number;
+  5  square number;
+  6  begin
+  7  cube:=(num*num*num);
+  8  square:=(num*num);
+  9  DBMS_OUTPUT.PUT_LINE('CUBE:= '|| cube || 'SQUARE:=' || square);
+ 10* END;
+SQL> /
+Enter value for n: 5
+old   3: num number:=&n;
+new   3: num number:=5;
+
+Procedure created.
+
+SQL> execute cubesq;
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL> execute cubesq;
+CUBE:= 125SQUARE:=25
+
+PL/SQL procedure successfully completed.

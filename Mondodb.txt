@@ -4434,130 +4434,1055 @@ iacsd121> db.resturent.find({cuisine:{$in:['American','Chinese']},borough:'Bronx
     },
     borough: 'Bronx',
     cuisine: 'American',
-    grades: [
-      {
-        date: ISODate("2014-09-25T00:00:00.000Z"),
-        grade: 'A',
-        score: 10
-      },
-      {
-        date: ISODate("2014-04-30T00:00:00.000Z"),
-        grade: 'B',
-        score: 20
-      },
-      {
-        date: ISODate("2013-08-19T00:00:00.000Z"),
-        grade: 'A',
-        score: 2
-      },
-      {
-        date: ISODate("2013-03-06T00:00:00.000Z"),
-        grade: 'A',
-        score: 13
-      },
-      {
-        date: ISODate("2012-01-26T00:00:00.000Z"),
-        grade: 'A',
-        score: 9
-      },
-      {
-        date: ISODate("2011-10-19T00:00:00.000Z"),
-        grade: 'B',
-        score: 18
-      }
-    ],
-    name: 'Riverdale Diner',
-    restaurant_id: '40380253'
-  },
-  {
-    _id: ObjectId("652159d1af82e4f405c111b4"),
-    address: {
-      building: '1506',
-      coord: [ -73.8537226, 40.8427071 ],
-      street: 'Bronxdale Avenue',
-      zipcode: '10462'
-    },
-    borough: 'Bronx',
-    cuisine: 'American',
-    grades: [
-      {
-        date: ISODate("2014-06-04T00:00:00.000Z"),
-        grade: 'A',
-        score: 5
-      },
-      {
-        date: ISODate("2013-05-22T00:00:00.000Z"),
-        grade: 'A',
-        score: 10
-      },
-      {
-        date: ISODate("2012-12-13T00:00:00.000Z"),
-        grade: 'A',
-        score: 12
-      },
-      {
-        date: ISODate("2012-05-14T00:00:00.000Z"),
-        grade: 'B',
-        score: 16
-      },
-      {
-        date: ISODate("2011-12-28T00:00:00.000Z"),
-        grade: 'A',
-        score: 13
-      },
-      {
-        date: ISODate("2011-08-10T00:00:00.000Z"),
-        grade: 'A',
-        score: 11
-      }
-    ],
-    name: 'Castlehill Diner',
-    restaurant_id: '40382517'
-  },
-  {
-    _id: ObjectId("652159d1af82e4f405c111ce"),
-    address: {
-      building: '5977',
-      coord: [ -73.8982704, 40.8896923 ],
-      street: 'Broadway',
-      zipcode: '10463'
-    },
-    borough: 'Bronx',
-    cuisine: 'American',
-    grades: [
-      {
-        date: ISODate("2014-05-30T00:00:00.000Z"),
-        grade: 'A',
-        score: 6
-      },
-      {
-        date: ISODate("2013-04-25T00:00:00.000Z"),
-        grade: 'A',
-        score: 7
-      },
-      {
-        date: ISODate("2012-11-20T00:00:00.000Z"),
-        grade: 'A',
-        score: 12
-      },
-      {
-        date: ISODate("2012-05-30T00:00:00.000Z"),
-        grade: 'A',
-        score: 10
-      },
-      {
-        date: ISODate("2011-12-19T00:00:00.000Z"),
-        grade: 'B',
-        score: 18
-      }
-    ],
-    name: 'Short Stop Restaurant',
-    restaurant_id: '40383819'
+
   }
 
 ===================================================================================================================================
 
+(18.)
+
+
+Type "it" for more
+... {borough:{$in:['Staten Island','Queens','Bronxor Brooklyn']}},
+... {name:1,borough:1,cuisine:1,restaurant_id:1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07e"),
+    borough: 'Queens',
+    cuisine: 'Jewish/Kosher',
+    name: 'Tov Kosher Kitchen',
+    restaurant_id: '40356068'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07f"),
+    borough: 'Queens',
+    cuisine: 'American',
+    name: 'Brunos On The Boulevard',
+    restaurant_id: '40356151'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc080"),
+    borough: 'Staten Island',
+    cuisine: 'Jewish/Kosher',
+    name: 'Kosher Island',
+    restaurant_id: '40356442'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc088"),
+    borough: 'Queens',
+    cuisine: 'Ice Cream, Gelato, Yogurt, Ices',
+    name: 'Carvel Ice Cream',
+    restaurant_id: '40361322'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc08e"),
+    borough: 'Queens',
+    cuisine: 'Delicatessen',
+    name: "Sal'S Deli",
+    restaurant_id: '40361618'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc08f"),
+    borough: 'Queens',
+
+=========================================================================================================
+
+(19.)
+
+Type "it" for more
+... {borough:{$nin:['Staten Island','Queens','Bronxor Brooklyn']}},
+... {name:1,borough:1,cuisine:1,restaurant_id:1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07a"),
+    borough: 'Manhattan',
+    cuisine: 'Irish',
+    name: 'Dj Reynolds Pub And Restaurant',
+    restaurant_id: '30191841'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07b"),
+    borough: 'Brooklyn',
+    cuisine: 'American',
+    name: 'Riviera Caterer',
+    restaurant_id: '40356018'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07c"),
+    borough: 'Brooklyn',
+    cuisine: 'Hamburgers',
+    name: "Wendy'S",
+    restaurant_id: '30112340'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07d"),
+    borough: 'Bronx',
+    cuisine: 'Bakery',
+    name: 'Morris Park Bake Shop',
+    restaurant_id: '30075445'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc081"),
+    borough: 'Brooklyn',
+    cuisine: 'Delicatessen',
+    name: "Wilken'S Fine Food",
+    restaurant_id: '40356483'
+  },
+
+======================================================================================================================================
+
 (20.)
+
+
+... {'grades.score':{$lte:10}},
+... {name:1,borough:1,cuisine:1,restaurant_id:1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07a"),
+    borough: 'Manhattan',
+    cuisine: 'Irish',
+    name: 'Dj Reynolds Pub And Restaurant',
+    restaurant_id: '30191841'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07b"),
+    borough: 'Brooklyn',
+    cuisine: 'American',
+    name: 'Riviera Caterer',
+    restaurant_id: '40356018'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07c"),
+    borough: 'Brooklyn',
+    cuisine: 'Hamburgers',
+    name: "Wendy'S",
+    restaurant_id: '30112340'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07d"),
+    borough: 'Bronx',
+    cuisine: 'Bakery',
+    name: 'Morris Park Bake Shop',
+    restaurant_id: '30075445'
+  },
+
+==================================================================================================================
+(21.)
+
+iacsd121> db.restaurant.find(
+... {$or:[{name:/^[W/^il/},{cuisine:{$nin:['American','Chinese']}}]},
+... {name:1,borough:1,cuisine:1,restaurant_id:1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07a"),
+    borough: 'Manhattan',
+    cuisine: 'Irish',
+    name: 'Dj Reynolds Pub And Restaurant',
+    restaurant_id: '30191841'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07c"),
+    borough: 'Brooklyn',
+    cuisine: 'Hamburgers',
+    name: "Wendy'S",
+    restaurant_id: '30112340'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07d"),
+    borough: 'Bronx',
+    cuisine: 'Bakery',
+    name: 'Morris Park Bake Shop',
+    restaurant_id: '30075445'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07e"),
+    borough: 'Queens',
+    cuisine: 'Jewish/Kosher',
+    name: 'Tov Kosher Kitchen',
+    restaurant_id: '40356068'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc080"),
+    borough: 'Staten Island',
+    cuisine: 'Jewish/Kosher',
+    name: 'Kosher Island',
+    restaurant_id: '40356442'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc081"),
+    borough: 'Brooklyn',
+    cuisine: 'Delicatessen',
+    name: "Wilken'S Fine Food",
+    restaurant_id: '40356483'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc083"),
+    borough: 'Brooklyn',
+    cuisine: 'Ice Cream, Gelato, Yogurt, Ices',
+    name: 'Taste The Tropics Ice Cream',
+    restaurant_id: '40356731'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc087"),
+    borough: 'Brooklyn',
+    cuisine: 'Jewish/Kosher',
+    name: 'Seuda Foods',
+    restaurant_id: '40360045'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc088"),
+    borough: 'Queens',
+    cuisine: 'Ice Cream, Gelato, Yogurt, Ices',
+    name: 'Carvel Ice Cream',
+    restaurant_id: '40361322'
+  },
+
+============================================================================
+(22.)
+
+iacsd121> db.restaurant.find(
+... {grades:{$elemMatch:{grade:'A',score:11}}},
+... {restaurant_id:1,name:1,grades:1,date:ISODate("2014-08-11T00:00:00Z")}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07a"),
+    grades: [
+      {
+        date: ISODate("2014-09-06T00:00:00.000Z"),
+        grade: 'A',
+        score: 2
+      },
+      {
+        date: ISODate("2013-07-22T00:00:00.000Z"),
+        grade: 'A',
+        score: 11
+      },
+      {
+        date: ISODate("2012-07-31T00:00:00.000Z"),
+        grade: 'A',
+        score: 12
+      },
+      {
+        date: ISODate("2011-12-29T00:00:00.000Z"),
+        grade: 'A',
+        score: 12
+      }
+    ],
+    name: 'Dj Reynolds Pub And Restaurant',
+    restaurant_id: '30191841',
+    date: ISODate("2014-08-11T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc082"),
+    grades: [
+      {
+        date: ISODate("2014-07-18T00:00:00.000Z"),
+        grade: 'A',
+        score: 12
+      },
+      {
+        date: ISODate("2013-07-30T00:00:00.000Z"),
+        grade: 'A',
+        score: 12
+      },
+      {
+        date: ISODate("2013-02-13T00:00:00.000Z"),
+        grade: 'A',
+        score: 11
+      },
+      {
+        date: ISODate("2012-08-16T00:00:00.000Z"),
+        grade: 'A',
+        score: 2
+      },
+      {
+        date: ISODate("2011-08-17T00:00:00.000Z"),
+        grade: 'A',
+        score: 11
+      }
+    ],
+    name: 'Regina Caterers',
+    restaurant_id: '40356649',
+    date: ISODate("2014-08-11T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc087"),
+    grades: [
+      {
+        date: ISODate("2014-11-10T00:00:00.000Z"),
+        grade: 'A',
+        score: 11
+      },
+      {
+        date: ISODate("2013-10-10T00:00:00.000Z"),
+        grade: 'A',
+        score: 13
+      },
+      {
+        date: ISODate("2012-10-04T00:00:00.000Z"),
+        grade: 'A',
+        score: 7
+      },
+      {
+        date: ISODate("2012-05-21T00:00:00.000Z"),
+        grade: 'A',
+        score: 9
+      },
+      {
+        date: ISODate("2011-12-30T00:00:00.000Z"),
+        grade: 'B',
+        score: 19
+      }
+    ],
+    name: 'Seuda Foods',
+    restaurant_id: '40360045',
+    date: ISODate("2014-08-11T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc08b"),
+    grades: [
+      {
+        date: ISODate("2014-05-28T00:00:00.000Z"),
+        grade: 'A',
+        score: 11
+      },
+      {
+        date: ISODate("2013-06-19T00:00:00.000Z"),
+        grade: 'A',
+        score: 4
+      },
+      {
+        date: ISODate("2012-06-15T00:00:00.000Z"),
+        grade: 'A',
+        score: 3
+      }
+    ],
+
+======================================================================================================
+(23.)
+iacsd121> db.restaurant.find(
+... {'grades.1.grade':'A','grades.1.score':9},
+... {restaurant_id:1,name:1,grades:1,date:ISODate("2014-09-06T00:00:00.000Z")}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc08e"),
+    grades: [
+      {
+        date: ISODate("2014-08-16T00:00:00.000Z"),
+        grade: 'A',
+        score: 12
+      },
+      {
+        date: ISODate("2013-08-27T00:00:00.000Z"),
+        grade: 'A',
+        score: 9
+      },
+      {
+        date: ISODate("2012-09-20T00:00:00.000Z"),
+        grade: 'A',
+        score: 7
+      },
+      {
+        date: ISODate("2011-09-29T00:00:00.000Z"),
+        grade: 'A',
+        score: 10
+      }
+    ],
+    name: "Sal'S Deli",
+    restaurant_id: '40361618',
+    date: ISODate("2014-09-06T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc092"),
+    grades: [
+      {
+        date: ISODate("2014-09-12T00:00:00.000Z"),
+        grade: 'B',
+        score: 26
+      },
+      {
+        date: ISODate("2013-08-28T00:00:00.000Z"),
+        grade: 'A',
+        score: 9
+      },
+      {
+        date: ISODate("2013-03-25T00:00:00.000Z"),
+        grade: 'B',
+        score: 20
+      },
+      {
+        date: ISODate("2012-02-14T00:00:00.000Z"),
+        grade: 'A',
+        score: 12
+      }
+    ],
+    name: 'P & S Deli Grocery',
+    restaurant_id: '40362264',
+    date: ISODate("2014-09-06T00:00:00.000Z")
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc098"),
+    grades: [
+      {
+        date: ISODate("2014-07-18T00:00:00.000Z"),
+        grade: 'A',
+        score: 12
+      },
+=========================================================================================================
+
+
+(24.)
+
+iacsd121> db.restaurant.find(
+... {'address.coord.1':{$gt:42,$lt:52}},
+... {name:1,borough:1,cuisine:1,restaurant_id:1,address:1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc31d"),
+    address: {
+      building: '47',
+      coord: [ -78.877224, 42.89546199999999 ],
+      street: 'Broadway @ Trinity Pl',
+      zipcode: '10006'
+    },
+    borough: 'Manhattan',
+    cuisine: 'American',
+    name: "T.G.I. Friday'S",
+    restaurant_id: '40387990'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc348"),
+    address: {
+      building: '1',
+      coord: [ -0.7119979, 51.6514664 ],
+      street: 'Pennplaza E, Penn Sta',
+      zipcode: '10001'
+    },
+    borough: 'Manhattan',
+    cuisine: 'American',
+    name: 'T.G.I. Fridays',
+    restaurant_id: '40388936'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc5a0"),
+    address: {
+      building: '3000',
+      coord: [ -87.86567699999999, 42.61150920000001 ],
+      street: '47 Avenue',
+      zipcode: '11101'
+    },
+    borough: 'Queens',
+    cuisine: 'American',
+    name: "Di Luvio'S Deli",
+    restaurant_id: '40402284'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc7d6"),
+    address: {
+      building: '21972199',
+      coord: [ -78.589606, 42.8912372 ],
+      street: 'Broadway',
+      zipcode: '10024'
+    },
+    borough: 'Manhattan',
+    cuisine: 'Chinese',
+    name: 'La Caridad 78',
+    restaurant_id: '40568285'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebcea8"),
+    address: {
+      building: '7981',
+      coord: [ -84.9751215, 45.4713351 ],
+      street: 'Hoyt Street',
+      zipcode: '11201'
+    },
+    borough: 'Brooklyn',
+    cuisine: 'American',
+    name: "Bijan'S",
+    restaurant_id: '40876618'
+  },
+=============================================
+(25.)
+
+... {},
+... {name:1,borough:1}
+... ).sort({name:1}).skip(1000)
+[   borough: 'Queens',
+  { cuisine: 'American',
+    _id: ObjectId("65242a047dfb0e0df4ebeca2"),
+    borough: 'Manhattan',
+    name: 'American Legion Veterans Post'0.000Z"),
+  },    grade: 'Z',
+  {     score: 38
+    _id: ObjectId("65242a047dfb0e0df4ebc229"),
+    borough: 'Manhattan',
+    name: 'American Museum Of Natural History Food Court'
+  },    grade: 'A',
+  {     score: 10
+    _id: ObjectId("65242a057dfb0e0df4ebfa8e"),
+    borough: 'Queens',
+    name: 'American Museum Of The Moving Image'"),
+  },    grade: 'A',
+  {     score: 7
+    _id: ObjectId("65242a047dfb0e0df4ebefe3"),
+    borough: 'Manhattan',
+    name: 'American Retro Bar & Grill'0:00.000Z"),
+  },    grade: 'A',
+  {     score: 13
+    _id: ObjectId("65242a047dfb0e0df4ebf499"),
+    borough: 'Manhattan',
+    name: 'American Table Cafe And Bar'
+  },restaurant_id: '40356151'
+  {,
+    _id: ObjectId("65242a057dfb0e0df4ec18f0"),
+    borough: 'Bronx',242a047dfb0e0df4ebc080"),
+    name: 'American Turners New York'
+  },  building: '2206',
+  {   coord: [ -74.1377286, 40.6119572 ],
+    _id: ObjectId("65242a057dfb0e0df4ec124c"),
+    borough: 'Manhattan',
+    name: 'American Whiskey'
+  },borough: 'Staten Island',
+  { cuisine: 'Jewish/Kosher',
+    _id: ObjectId("65242a047dfb0e0df4ebccd9"),
+    borough: 'Manhattan',
+    name: 'Americas Burger And Wraps'00:00.000Z"),
+  },    grade: 'A',
+  {     score: 9
+    _id: ObjectId("65242a047dfb0e0df4ebc5a4"),
+    borough: 'Queens',
+    name: 'Americas Restorante'20T00:00:00.000Z"),
+  },    grade: 'A',
+  {     score: 12
+    _id: ObjectId("65242a047dfb0e0df4ebdb2c"),
+    borough: 'Bronx',
+    name: 'Americo Food Market'04T00:00:00.000Z"),
+  },    grade: 'A',
+  {     score: 12
+    _id: ObjectId("65242a057dfb0e0df4ec1606"),
+    borough: 'Queens',
+    name: 'Amerivents Catering '4T00:00:00.000Z"),
+  },    grade: 'A',
+  {     score: 9
+    _id: ObjectId("65242a047dfb0e0df4ebcbfe"),
+    borough: 'Queens',
+    name: 'Amf 34 Avenue Lanes'
+  },restaurant_id: '40356442'
+  {,
+    _id: ObjectId("65242a047dfb0e0df4ebeafd"),
+    borough: 'Manhattan',047dfb0e0df4ebc081"),
+    name: 'Amici 36'
+  },  building: '7114',
+  {   coord: [ -73.9068506, 40.6199034 ],
+    _id: ObjectId("65242a047dfb0e0df4ebd5f9"),
+    borough: 'Staten Island',
+    name: 'Amici Bakery'
+  },borough: 'Brooklyn',
+  { cuisine: 'Delicatessen',
+    _id: ObjectId("65242a047dfb0e0df4ebd462"),
+    borough: 'Queens',
+    name: 'Amici Bar'("2014-05-29T00:00:00.000Z"),
+  },    grade: 'A',
+  {     score: 10
+    _id: ObjectId("65242a057dfb0e0df4ec1782"),
+    borough: 'Staten Island',
+    name: 'Amici Brick Oven Pizza'00:00:00.000Z"),
+  },    grade: 'A',
+  {     score: 10
+    _id: ObjectId("65242a057dfb0e0df4ec1a2b"),
+    borough: 'Brooklyn',
+    name: 'Amici Cafe'"2013-08-03T00:00:00.000Z"),
+  },    grade: 'A',
+  {     score: 8
+    _id: ObjectId("65242a057dfb0e0df4ebf74c"),
+    borough: 'Manhattan',
+
+============================================================================================
+(26.)
+
+
+iacsd121> db.restaurant.find(
+... {},
+... {name:1,borough:1}
+... ).sort({name:-1})
+[
+  {
+    _id: ObjectId("65242a057dfb0e0df4ec04ec"),
+    borough: 'Staten Island',
+    name: "Zz'S Pizza & Grill"
+  },
+  {
+    _id: ObjectId("65242a057dfb0e0df4ec0b81"),
+    borough: 'Manhattan',
+    name: 'Zz Clam Bar'
+  },
+  {
+    _id: ObjectId("65242a057dfb0e0df4ec074a"),
+    borough: 'Bronx',
+    name: 'Zymi Bar & Grill'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebe549"),
+    borough: 'Brooklyn',
+    name: 'Zuzu Ramen'
+  },
+  {
+    _id: ObjectId("65242a057dfb0e0df4ebf74e"),
+    borough: 'Manhattan',
+    name: 'Zutto'
+  },
+  {
+    _id: ObjectId("65242a057dfb0e0df4ec0407"),
+    borough: 'Staten Island',
+    name: 'Zumba Restaurant'
+  },
+  {
+    _id: ObjectId("65242a057dfb0e0df4ec2053"),
+    borough: 'Manhattan',
+    name: 'Zuma Japanese Restaurant New York'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc13a"),
+    borough: 'Queens',
+    name: 'Zum Stammtisch'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebcc71"),
+    borough: 'Manhattan',
+    name: 'Zum Schneider'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebdecb"),
+    borough: 'Manhattan',
+    name: "Zucker'S Bagels And Smoked Fish"
+  },
+  {
+    _id: ObjectId("65242a057dfb0e0df4ec05aa"),
+    borough: 'Manhattan',
+    name: "Zucker'S Bagel"
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebf610"),
+    borough: 'Manhattan',
+    name: 'Zucker Bakery'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebd98f"),
+    borough: 'Manhattan',
+    name: 'Zucchero E Pomodori'
+  },
+  {
+    _id: ObjectId("65242a057dfb0e0df4ec0273"),
+    borough: 'Queens',
+    name: 'Zucca Buca Frozen Yogurt'
+  },
+  {
+    _id: ObjectId("65242a057dfb0e0df4ec111d"),
+    borough: 'Queens',
+    name: 'Zu Rang Ny'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebceac"),
+    borough: 'Queens',
+    name: "Zorba'S"
+  },
+
+========================================================================================
+
+(27.)
+
+
+iacsd121> db.restaurant.find(
+... {},
+... {name:1,borough:1,cuisine:1}
+... ).sort({cuisine:1},{borough:-1})
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc766"),
+    borough: 'Manhattan',
+    cuisine: 'Afghan',
+    name: 'Afghan Kebab House'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc890"),
+    borough: 'Manhattan',
+    cuisine: 'Afghan',
+    name: 'Khyber Pass'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc949"),
+    borough: 'Manhattan',
+    cuisine: 'Afghan',
+    name: 'Afghan Kebab House #1'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebce6b"),
+    borough: 'Manhattan',
+    cuisine: 'Afghan',
+    name: 'Ariana Kebab House'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebf0d6"),
+    borough: 'Queens',
+    cuisine: 'Afghan',
+    name: 'Afghan Kebob House'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebf301"),
+    borough: 'Queens',
+    cuisine: 'Afghan',
+    name: 'Bakhter Afghan Halal Kabab'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebf3ff"),
+    borough: 'Queens',
+    cuisine: 'Afghan',
+    name: 'Choopan Kabab Restaurant'
+  },
+
+==============================================================================
+
+(28.)
+
+iacsd121> db.restaurant.find(
+... {},
+... {name:1,address:1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07a"),
+    address: {
+      building: '351',
+      coord: [ -73.98513559999999, 40.7676919 ],
+      street: 'West   57 Street',
+      zipcode: '10019'
+    },
+    name: 'Dj Reynolds Pub And Restaurant'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07b"),
+    address: {
+      building: '2780',
+      coord: [ -73.98241999999999, 40.579505 ],
+      street: 'Stillwell Avenue',
+      zipcode: '11224'
+    },
+    name: 'Riviera Caterer'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07c"),
+    address: {
+      building: '469',
+      coord: [ -73.961704, 40.662942 ],
+      street: 'Flatbush Avenue',
+      zipcode: '11225'
+    },
+    name: "Wendy'S"
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07d"),
+    address: {
+      building: '1007',
+      coord: [ -73.856077, 40.848447 ],
+      street: 'Morris Park Ave',
+      zipcode: '10462'
+    },
+    name: 'Morris Park Bake Shop'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07e"),
+    address: {
+      building: '97-22',
+      coord: [ -73.8601152, 40.7311739 ],
+      street: '63 Road',
+      zipcode: '11374'
+    },
+    name: 'Tov Kosher Kitchen'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07f"),
+    address: {
+      building: '8825',
+      coord: [ -73.8803827, 40.7643124 ],
+      street: 'Astoria Boulevard',
+      zipcode: '11369'
+    },
+    name: 'Brunos On The Boulevard'
+  },
+
+=========================================================================================================
+
+(29.)
+
+
+
+
+iacsd121> db.restaurant.find(
+... {'address.coord.0':{$type:'double'},'address.coord.1':{$type:'double'}},
+... {name:1,'address.coord':1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07a"),
+    address: { coord: [ -73.98513559999999, 40.7676919 ] },
+    name: 'Dj Reynolds Pub And Restaurant'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07b"),
+    address: { coord: [ -73.98241999999999, 40.579505 ] },
+    name: 'Riviera Caterer'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07c"),
+    address: { coord: [ -73.961704, 40.662942 ] },
+    name: "Wendy'S"
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07d"),
+    address: { coord: [ -73.856077, 40.848447 ] },
+    name: 'Morris Park Bake Shop'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07e"),
+    address: { coord: [ -73.8601152, 40.7311739 ] },
+    name: 'Tov Kosher Kitchen'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07f"),
+    address: { coord: [ -73.8803827, 40.7643124 ] },
+    name: 'Brunos On The Boulevard'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc080"),
+    address: { coord: [ -74.1377286, 40.6119572 ] },
+    name: 'Kosher Island'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc081"),
+    address: { coord: [ -73.9068506, 40.6199034 ] },
+    name: "Wilken'S Fine Food"
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc082"),
+    address: { coord: [ -74.00528899999999, 40.628886 ] },
+    name: 'Regina Caterers'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc083"),
+    address: { coord: [ -73.9482609, 40.6408271 ] },
+    name: 'Taste The Tropics Ice Cream'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc084"),
+    address: { coord: [ -73.871194, 40.6730975 ] },
+    name: 'May May Kitchen'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc085"),
+    address: { coord: [ -73.96926909999999, 40.7685235 ] },
+    name: '1 East 66Th Street Kitchen'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc086"),
+    address: { coord: [ -73.9973325, 40.61174889999999 ] },
+    name: 'C & C Catering Service'
+  },
+
+==============================================================================================
+
+(30.)
+
+
+Type "it" for more
+... {'grades.score':{$mod:[7,0]}},
+... {name:1,restaurant_id:1,'grades.score':1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07b"),
+    grades: [ { score: 5 }, { score: 7 }, { score: 12 }, { score: 12 } ],
+    name: 'Riviera Caterer',
+    restaurant_id: '40356018'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07d"),
+    grades: [
+      { score: 2 },
+      { score: 6 },
+      { score: 10 },
+      { score: 9 },
+      { score: 14 }
+    ],
+    name: 'Morris Park Bake Shop',
+    restaurant_id: '30075445'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc07f"),
+    grades: [ { score: 38 }, { score: 10 }, { score: 7 }, { score: 13 } ],
+    name: 'Brunos On The Boulevard',
+    restaurant_id: '40356151'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc084"),
+    grades: [
+      { score: 21 },
+      { score: 7 },
+      { score: 56 },
+      { score: 27 },
+      { score: 27 }
+    ],
+    name: 'May May Kitchen',
+    restaurant_id: '40358429'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc085"),
+    grades: [ { score: 3 }, { score: 4 }, { score: 6 }, { score: 0 } ],
+    name: '1 East 66Th Street Kitchen',
+    restaurant_id: '40359480'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc087"),
+    grades: [
+      { score: 11 },
+      { score: 13 },
+      { score: 7 },
+      { score: 9 },
+      { score: 19 }
+    ],
+    name: 'Seuda Foods',
+    restaurant_id: '40360045'
+  },
+
+=============================================================================================
+(31.)
+
+]
+Type "it" for more
+... {name:/mon/},
+... {name:1,borough:1,'address.coord':1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc10e"),
+    address: { coord: [ -73.98306099999999, 40.7441419 ] },
+    borough: 'Manhattan',
+    name: "Desmond'S Tavern"
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc117"),
+    address: { coord: [ -73.8221418, 40.7272376 ] },
+    borough: 'Queens',
+    name: 'Shimons Kosher Pizza'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc124"),
+    address: { coord: [ -74.10465599999999, 40.58834 ] },
+    borough: 'Staten Island',
+    name: 'Richmond County Country Club'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc14d"),
+    address: { coord: [ -73.9812843, 40.5947365 ] },
+    borough: 'Brooklyn',
+    name: 'Lb Spumoni Gardens'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc19f"),
+    address: { coord: [ -73.951199, 40.7166026 ] },
+    borough: 'Brooklyn',
+    name: "Bamonte'S Restaurant"
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc1d8"),
+    address: { coord: [ -73.924072, 40.76108900000001 ] },
+    borough: 'Queens',
+    name: 'Omonia Cafe'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc25a"),
+    address: { coord: [ -73.9901605, 40.7526176 ] },
+    borough: 'Manhattan',
+    name: "Delmonico'S Kitchen"
+  },
+===========================================================================================
+
+(32.)
+
+
+iacsd121> db.restaurant.find(
+... {name:/Mad/},
+... {name:1,borough:1,'address.coord':1}
+... )
+[
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc2a4"),
+    address: { coord: [ -74.158427, 40.626607 ] },
+    borough: 'Staten Island',
+    name: 'Real Madrid Restaurant'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc5b4"),
+    address: { coord: [ -73.9860597, 40.7431194 ] },
+    borough: 'Manhattan',
+    name: 'Madison Square'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc623"),
+    address: { coord: [ -73.9860597, 40.7431194 ] },
+    borough: 'Manhattan',
+    name: 'Cafe Madison'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc63a"),
+    address: { coord: [ -73.989578, 40.7129199 ] },
+    borough: 'Manhattan',
+    name: 'El Castillo De Madison'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc684"),
+    address: { coord: [ -73.98302199999999, 40.742313 ] },
+    borough: 'Manhattan',
+    name: 'Madras Mahal'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc937"),
+    address: { coord: [ -74.000002, 40.72735 ] },
+    borough: 'Manhattan',
+    name: 'Madame X'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc9bb"),
+    address: { coord: [ -73.9563202, 40.7846507 ] },
+    borough: 'Manhattan',
+    name: 'Yura & Company On Madison'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebc9e1"),
+    address: { coord: [ -73.98171959999999, 40.7499406 ] },
+    borough: 'Manhattan',
+    name: 'Madison Bistro'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebca6b"),
+    address: { coord: [ -73.9717845, 40.6897199 ] },
+    borough: 'Brooklyn',
+    name: 'Madiba'
+  },
+  {
+    _id: ObjectId("65242a047dfb0e0df4ebcd70"),
+    address: { coord: [ -73.9040753, 40.9069011 ] },
+    borough: 'Bronx',
+    name: "Madison'S"
+  },
+
 
 
 

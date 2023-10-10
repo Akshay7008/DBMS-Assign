@@ -55,3 +55,89 @@ SQL> execute cubesq;
 CUBE:= 125SQUARE:=25
 
 PL/SQL procedure successfully completed.
+
+
+=========================================================================================================================
+3.
+
+  1  create or replace procedure temperture
+  2  as
+  3  C number:=&c;
+  4  F number:=&f;
+  5  celsius number;
+  6  fehrenheit number;
+  7  begin
+  8  celsius:=round((F-32)*5/9,2);
+  9  fehrenheit:=9/5*C+32;
+ 10  DBMS_OUTPUT.PUT_LINE('celsius: '||celsius||'fehrenheit: '||fehrenheit);
+ 11* end;
+SQL> /
+Enter value for c: 50
+old   3: C number:=&c;
+new   3: C number:=50;
+Enter value for f: 120
+old   4: F number:=&f;
+new   4: F number:=120;
+
+Procedure created.
+
+SQL> execute temperture;
+celsius: 48.89fehrenheit: 122
+
+PL/SQL procedure successfully completed.
+
+=================================================================================================================================
+4.
+
+
+  1  create or replace procedure converstion(inch number)
+  2  as
+  3  yard number;
+  4  foot number;
+  5  inc number;
+  6  begin
+  7  yard:=floor(inch/36);
+  8  foot:=floor(mod(inch,36)/12);
+  9  inc:=floor(mod(mod(inch,36),12));
+ 10  DBMS_OUTPUT.PUT_LINE('Yards:'||yard||'Foot'||foot||'Inches:'||inc);
+ 11* end;
+SQL> /
+
+Procedure created.
+
+SQL> set serveroutput on;
+SQL> execute converstion (124);
+Yards:3Foot1Inches:4
+
+PL/SQL procedure successfully completed.
+
+=========================================================================================================
+5.
+
+
+  1  create or replace procedure check_1(num number)
+  2  as
+  3  begin
+  4  IF mod(num/5)=0 THEN
+  5  DBMS_OUTPUT.PUT_LINE('Number is divisible by 5')
+  6  ELSE
+  7  DBMS_OUTPUT.PUT_LINE('Number is  not divisible by 5')
+  8* end IF;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> show error
+Errors for PROCEDURE CHECK_1:
+
+LINE/COL ERROR
+-------- -----------------------------------------------------------------
+6/1      PLS-00103: Encountered the symbol "ELSE" when expecting one of
+         the following:
+         := . ( % ;
+         The symbol ";" was substituted for "ELSE" to continue.
+
+8/1      PLS-00103: Encountered the symbol "END" when expecting one of the
+         following:
+         := . ( % ;
+

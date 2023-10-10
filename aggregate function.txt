@@ -1,6 +1,6 @@
 
 
-1
+1.
 
 iacsd121>   db.book.aggregate([
 ...   {$match:{authors:['Faisal Abid'],categories:1}}
@@ -258,6 +258,252 @@ iacsd121> db.book.find({$expr:{$eq:[{$year:'$publishedDate'},2009]}},{authors:1,
 ]
 
 =================================================================================================================
+
+6.
+
+Type "it" for more
+... {pageCount:{$in:[500,556,670]}},
+... {pageCount:1,title:1,status:1}
+... )
+[
+  {
+    _id: 54,
+    title: 'Android in Practice',
+    pageCount: 500,
+    status: 'PUBLISH'
+  },
+  {
+    _id: 73,
+    title: 'Spring Roo in Action',
+    pageCount: 500,
+    status: 'PUBLISH'
+  },
+  {
+    _id: 148,
+    title: 'Portlets and Apache Portals',
+    pageCount: 500,
+    status: 'PUBLISH'
+  },
+  {
+    _id: 197,
+    title: 'Erlang and OTP in Action',
+    pageCount: 500,
+    status: 'PUBLISH'
+  },
+  {
+    _id: 227,
+    title: 'Core OWL 5.0',
+    pageCount: 500,
+    status: 'PUBLISH'
+  },
+  {
+    _id: 273,
+    title: 'The Awesome Power of Java Beans',
+    pageCount: 500,
+    status: 'PUBLISH'
+  },
+
+=================================================================================
+
+7.
+
+iacsd121> db.book.update(
+... {$or:[{pageCount:{$gt:200,$lt:500}},{pageCount:{$gt:500}}]},
+... {$push:{categories:{$each:['kindle','hard bind']}}},
+... {multi:true}
+... )
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 255,
+  modifiedCount: 255,
+  upsertedCount: 0
+}
+
+========================================================================================================
+
+8.
+
+iacsd121> db.book.find(
+... {},
+... {title:1,thumbnailUrl:1}
+... )
+[
+  {
+    _id: 3,
+    title: 'Specification by Example',
+    thumbnailUrl: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/adzic.jpg'
+  },
+  {
+    _id: 2,
+    title: 'Android in Action, Second Edition',
+    thumbnailUrl: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson2.jpg'
+  },
+  {
+    _id: 1,
+    title: 'Unlocking Android',
+    thumbnailUrl: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg'
+  },
+  {
+    _id: 4,
+    title: 'Flex 3 in Action',
+    thumbnailUrl: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ahmed.jpg'
+  },
+  {
+    _id: 6,
+    title: 'Collective Intelligence in Action',
+    thumbnailUrl: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/alag.jpg'
+  },
+  {
+    _id: 5,
+    title: 'Flex 4 in Action',
+    thumbnailUrl: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ahmed2.jpg'
+  },
+  {
+    _id: 7,
+    title: 'Zend Framework in Action',
+    thumbnailUrl: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/allen.jpg'
+  },
+  {
+    _id: 8,
+    title: 'Flex on Java',
+    thumbnailUrl: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/allmon.jpg'
+  },
+  {
+    _id: 9,
+    title: 'Griffon in Action',
+    thumbnailUrl: 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/almiray.jpg'
+  },
+=====================================================================================================
+
+9.
+
+Type "it" for more
+... {title:/[Ff/l/},
+... {$set:{type:['fiction','moral stories','adventurous']}},
+... {upsert:true}
+... )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+iacsd121> db.book.find(
+... {},
+... {type:1,title:1,_id:0}
+... )
+[
+  { title: 'Specification by Example' },
+  { title: 'Android in Action, Second Edition' },
+  { title: 'Unlocking Android' },
+  {
+    title: 'Flex 3 in Action',
+    type: [ 'fiction', 'moral stories', 'adventurous' ]
+  },
+  { title: 'Collective Intelligence in Action' },
+  { title: 'Flex 4 in Action' },
+  { title: 'Zend Framework in Action' },
+  { title: 'Flex on Java' },
+
+=======================================================================================
+
+10.
+acsd121> db.book.update(
+... {},
+... {$set:{comment:[{comment:'like the book' ,date:ISODate('2019-09-01')}]}},
+... {upsert:true,multi:true}
+... )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 430,
+  modifiedCount: 429,
+  upsertedCount: 0
+}
+
+===============================================================
+
+12.
+
+
+iacsd121> db.book.update(
+... {'authors.0':'Tariq Ahmed'},
+... {$inc:{pageCount:100}},
+... {multi:true}
+... )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+=========================================================================
+
+13.
+
+}
+iacsd121> db.book.update(
+... {authors:'Michael J. Barlotta'},
+... {$set:{authors:'Fr'}},
+... {multi:true}
+... )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+iacsd121>
+========================================================================
+
+14.
+
+
+iacsd121> db.book.find(
+... {$or:[{pageCount:{$gt:300}},{pageCount:{$lt:500}}]},
+... {title:1,status:1,pageCount:1,comment:1}
+... )
+[
+  {
+    _id: 3,
+    title: 'Specification by Example',
+    pageCount: 0,
+    status: 'PUBLISH',
+    comment: [
+      {
+        comment: 'like the book',
+        date: ISODate("2019-09-01T00:00:00.000Z")
+      }
+    ]
+  },
+  {
+    _id: 2,
+    title: 'Android in Action, Second Edition',
+    pageCount: 592,
+    status: 'PUBLISH'
+  },
+  {
+    _id: 1,
+    title: 'Unlocking Android',
+    pageCount: 416,
+    status: 'PUBLISH'
+  },
+  {
+    _id: 4,
+    title: 'Flex 3 in Action',
+    pageCount: 576,
+    status: 'undergoing change'
+  },
+
+===============================================
+
 
 
 

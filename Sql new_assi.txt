@@ -121,7 +121,7 @@ SQL> /
 
 ========================================================================================================================
 
-3)
+3)List LoanNO and Loan City of Borrowers Having the Same Branch as that of Depositors SUNIL
 
 Wrote file afiedt.buf
 
@@ -154,7 +154,8 @@ SQL> /
 
 =======================================================================================================================
 
-4)
+4)List LoanNO,Loan City,Account NO and Deposit City of Customers Living in NAGPUR.
+
 
   1  select loanno,actno,cname2,bname2,bcity
   2  from deposit d inner join borrow b
@@ -169,11 +170,26 @@ SQL> /
        311        101 sunil                dharampeth bank      nagpur
        321        106 madhuri              andheri bank         nagpur
 
+---------------------------------------or-------------------------------------------------------
+
+
+  1  select loanno,actno,cname2,bname2,city
+  2  from deposit d inner join borrow b
+  3  on d.cname1=b.cname2 inner join customer c
+  4  on b.cname2=c.cname
+  5* where city='nagpur'
+SQL> /
+
+    LOANNO      ACTNO CNAME2               BNAME2               CITY
+---------- ---------- -------------------- -------------------- --------------------
+       375        103 pramod               virar bank           nagpur
+       321        106 madhuri              andheri bank         nagpur
+
 
 ============================================================================================================================
 
 
-5)
+5)  List Deposit Details and Loan details of Customers in the City where Pramod is Living.
 
 
   1  select loanno,actno,cname2,bname2,bcity
@@ -196,7 +212,8 @@ SQL> /
 =================================================================================================================
 
 
-6)
+6)List Names of Customers who are Depositors and have Same Branch City as that of SUNIL.
+
 
 
 
@@ -213,7 +230,7 @@ SQL> /
 
 
 ========================================================================================================================
-7)
+7) List Names of Depositors Having Same Living City as that of SHIVANI and Having Deposit City Greater than 2000.
 
 
   1  select actno,cname1,bname1,bcity
@@ -229,7 +246,8 @@ SQL> /
 
 =================================================================================================================
 
-8)
+8)List Names of Borrowers Having Deposit Amount Greater than 1000 and Loan Amount Greater than 2000.
+
 
 
   1  select actno,cname1,bname1,loanno
@@ -247,7 +265,8 @@ SQL> /
 
 ==================================================================================================================
 
-9)
+9)List Names of Depositors Having the Same Branch as the Branch of SUNIL.
+
 
 SQL> select *from deposit
   2  where bname1=(select bname1 from deposit where cname1='sunil');
@@ -259,7 +278,7 @@ SQL> select *from deposit
 
 ===========================================================================================================
 
-10)
+10)List Names of Borrowers Having Loan Amount Greater than the Loan Amount of ANIL
 
 
 SQL> select *from borrow
@@ -271,7 +290,8 @@ SQL> select *from borrow
 
 ========================================================================================================
 
-11)
+11)List LoanNO,Loan City,Account NO and Deposit City of Customers Having Deposit Branch Located in DELHI.
+
 
 
   1  select loanno,actno,cname2,bname2,bcity
@@ -287,7 +307,7 @@ SQL> /
 
 ==========================================================================================================
 
-12)
+12)List LoanNO,Loan City,Account NO,Deposit City,Branch Name,Branch City and Living City of Pramod.
 
   1  select loanno,actno,cname1,bname1,bcity
   2  from borrow b inner join deposit d
@@ -304,7 +324,8 @@ SQL> /
 
 =============================================================================================================
 
-13)
+13)List Deposit Details and Loan details of Customers in the City where Pramod is Living.
+
 
 
   1  select loanno,actno,cname1,bname1,city
@@ -322,7 +343,7 @@ SQL> /
 
 =================================================================================================================
 
-14)
+14)List Names of Depositors Having balance Greater than 1000 and group by branch name
 
 Wrote file afiedt.buf
 
@@ -345,7 +366,8 @@ mg road bank
 
 =======================================================================================================================
 
-15)
+15) List LoanNO,Loan City,Account NO,Deposit City,Branch Name,Branch City and Living City of Pramod
+
 
 
   1  select loanno,actno,bname2,cname2,bcity

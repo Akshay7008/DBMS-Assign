@@ -107,6 +107,18 @@ SQL> /
        107 kranti               nehru palace bank    delhi
 
 
+---------------------OR---------------------------
+
+  1  select actno,cname1,bname1
+  2  from deposit
+  3* where bname1=(select bname1 from deposit where cname1='sunil')
+SQL> /
+
+     ACTNO CNAME1               BNAME1
+---------- -------------------- --------------------
+       101 sunil                ajni bank
+       106 madhuri              ajni bank
+
 ========================================================================================================================
 
 3)
@@ -122,6 +134,22 @@ SQL> /
     LOANNO CNAME2               BNAME2
 ---------- -------------------- --------------------
        206 mehul                ajni bank
+
+-----------------------------or------------------------------------------
+
+ 1  select loanno,actno,cname2,bname2,bcity
+  2  from borrow b inner join deposit d
+  3  on b.cname2=d.cname1 inner join bank k
+  4  on b.bname2=k.bname
+  5* where bcity=(select bcity from bank where bname=(select bname1 from deposit where cname1='sunil'))
+SQL> /
+
+    LOANNO      ACTNO CNAME2               BNAME2               BCITY
+---------- ---------- -------------------- -------------------- --------------------
+       201        100 anil                 vrce bank            nagpur
+       311        101 sunil                dharampeth bank      nagpur
+       206        102 mehul                ajni bank            nagpur
+
 
 
 =======================================================================================================================

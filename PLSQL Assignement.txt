@@ -133,3 +133,27 @@ SQL> execute check_1(25);
 Number is divisible by 5
 
 PL/SQL procedure successfully completed.
+
+============================================================================================================
+
+
+  1  create or replace procedure display(dno number)
+  2  as
+  3  cnt number;
+  4  a number:=1;
+  5  tol number;
+  6  begin
+  7  select count(*) into cnt
+  8  from emp
+  9  where deptno=dno;
+ 10  tol:=a-cnt;
+ 11  DBMS_OUTPUT.PUT_LINE('total_count'||tol);
+ 12* end;
+SQL> /
+
+Procedure created.
+
+SQL> execute display(20);
+total_count-4
+
+PL/SQL procedure successfully completed.
